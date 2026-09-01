@@ -1,0 +1,42 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>dev.gaphunter.piitostringleakcompanion</id>
+    <name>PII via toString() Leak Companion</name>
+    <vendor>Gap Hunter Labs</vendor>
+    <description><![CDATA[
+        <p>Warning on a logging/print call passed an instance of a class
+        whose <code>toString()</code> exposes a PII field (email, SSN,
+        phone, date of birth, credit card...) -- <code>toString()</code>
+        on a user object often serializes the whole model, including
+        PII, unlike <code>log.info(user.getEmail())</code> which
+        explicitly picks only what should be logged. A well-documented
+        pattern of real incidents (Piiano, New Relic, Guidewire
+        Security).</p>
+        <p>Different angle from <code>pii-field-annotation-companion</code>
+        (this catalog): that plugin flags a PII field itself passed
+        directly to a logger; here the field never appears textually at
+        the call site at all -- it leaks implicitly through
+        <code>toString()</code>'s serialization of the whole object.</p>
+        <p>Stated honestly: v0.1 only <code>toString()</code> generated
+        by the IDE or Lombok <code>@ToString</code> (a predictable
+        field-listing shape) -- a fully hand-written
+        <code>toString()</code> with arbitrary logic is out of scope.
+        Also covers implicit string concatenation
+        (<code>log.info("User: " + user)</code>), not just a direct
+        single argument.</p>
+        <p>Free. No license nags, no telemetry, no network calls.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection language="JAVA"
+            groupName="PII via toString() Leak Companion"
+            displayName="PII exposed implicitly via toString()"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="dev.gaphunter.piitostringleakcompanion.inspection.PiiToStringInspection"/>
+        <notificationGroup id="PII via toString() Leak Companion" displayType="BALLOON"/>
+    </extensions>
+</idea-plugin>
