@@ -6,6 +6,12 @@ credit card...) -- `toString()` on a user object often serializes the
 whole model, unlike `log.info(user.getEmail())` which explicitly picks
 only what should be logged.
 
+## Screenshots
+
+![Screenshot 1](docs/screenshots/Screenshot_1.png)
+
+![Screenshot 2](docs/screenshots/Screenshot_2.png)
+
 ## Why it exists
 
 A well-documented pattern of real incidents (Piiano, New Relic,
