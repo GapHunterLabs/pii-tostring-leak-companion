@@ -47,10 +47,12 @@ with arbitrary logic (e.g. a custom summary string) is out of scope.
 Open any Java file. A `log.info(user)`/`System.out.println(user)`-style
 call passed an instance whose `toString()` exposes PII shows a warning.
 
-## Enterprise / Team Licensing
+## Support
 
-Need enterprise features, custom rules, or team licensing? Contact us at
-**gaphunterlabs@gmail.com**.
+- **Bugs and feature requests:** [GitHub Issues](https://github.com/GapHunterLabs/pii-tostring-leak-companion/issues)
+- **Questions, or custom rules for a team's codebase:** **gaphunterlabs@gmail.com**
+- **Security vulnerabilities:** report privately as described in [SECURITY.md](SECURITY.md), not in a public issue.
+- **Privacy and network behavior:** [PRIVACY.md](PRIVACY.md)
 
 ## Development
 
